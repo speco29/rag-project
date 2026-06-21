@@ -8,7 +8,7 @@ import faiss
 import numpy as np
 
 
-def load_pdf(pdf_path):                          # ✅ fixed argument
+def load_pdf(pdf_path):                          
     doc = fitz.open(pdf_path)
     text = ""
     for page in doc:
@@ -24,7 +24,7 @@ def chunk_text(text, chunk_size=1000):
     return chunks
 
 def embed_chunks(chunks):
-    model = SentenceTransformer('all-MiniLM-L6-v2')  # ✅ fixed = to -
+    model = SentenceTransformer('all-MiniLM-L6-v2')  
     embeddings = model.encode(chunks)
     return embeddings
 
