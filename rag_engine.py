@@ -15,7 +15,7 @@ def load_pdf(pdf_path):
         text += page.get_text()
     return text
 
-def chunk_text(text, chunk_size=1000):
+def chunk_text(text, chunk_size=300):  # smaller chunks = safer
     words = text.split()
     chunks = []
     for i in range(0, len(words), chunk_size):
@@ -40,21 +40,47 @@ def search(query, index, chunks, top_k=3):
     _, indices = index.search(np.array(query_vec), top_k)
     return [chunks[i] for i in indices[0]]
 
-def ask_llm(question, context_chunks):
-    # use only 1 chunk, trimmed to 300 chars
-    context = context_chunks[0][:300]
+def build_safe_prompt(question, context_chunks, max_chars=3000):
+    # keep adding chunks until we hit the char limit
+    context = ""
+    for chunk in context_chunks:
+        if len(context) + len(chunk) > max_chars:
+            break
+        context += chunk + "\n\n"
     
-    prompt = f"""Answer briefly using only this context:
+    prompt = f"""Answer the question using only the context below. Be concise.
 
-Context: {context}
+Context:
+{context}
 
 Question: {question}
 Answer:"""
+    
+    return prompt
+
+def ask_llm(question, context_chunks):
+    prompt = build_safe_prompt(question, context_chunks, max_chars=3000)
 
     client = Groq(api_key=os.getenv("GROQ_API_KEY"))
-    response = client.chat.completions.create(
-        model="mixtral-8x7b-32768",   # ✅ bigger context window than llama3
-        messages=[{"role": "user", "content": prompt}],
-        max_tokens=500
-    )
-    return response.choices[0].message.content
+    
+    # try models one by one if one fails
+    models = [
+        "llama3-8b-8192",
+        "llama-3.1-8b-instant",
+        "gemma2-9b-it",
+    ]
+    
+    for model in models:
+        try:
+            response = client.chat.completions.create(
+                model=model,
+                messages=[{"role": "user", "content": prompt}],
+                max_tokens=512
+            )
+            return response.choices[0].message.content
+        except Exception as e:
+            if "model" in str(e).lower() or "bad request" in str(e).lower():
+                continue  # try next model
+            raise e  # if different error, raise it
+    
+    return "Sorry, could not get an answer. Please try again."
