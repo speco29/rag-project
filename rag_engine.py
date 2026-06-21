@@ -1,12 +1,12 @@
 from dotenv import load_dotenv
 import os
 load_dotenv()
-import ollama
+
 import fitz
 from sentence_transformers import SentenceTransformer
 import faiss
 import numpy as np
-
+from groq import Groq
 
 def load_pdf(pdf_path):                          
     doc = fitz.open(pdf_path)
@@ -40,10 +40,6 @@ def search(query, index, chunks, top_k=3):
     _, indices = index.search(np.array(query_vec), top_k)
     return [chunks[i] for i in indices[0]]
 
-
-
-import ollama
-
 def ask_llm(question, context_chunks):
     context = "\n\n".join(context_chunks)
     prompt = f"""Answer the question using only the context below.
@@ -54,8 +50,9 @@ Context:
 Question: {question}
 Answer:"""
 
-    response = ollama.chat(
-        model="llama3.2",
+    client = Groq(api_key=os.getenv("GROQ_API_KEY"))  
+    response = client.chat.completions.create(
+        model="llama3-8b-8192",
         messages=[{"role": "user", "content": prompt}]
     )
-    return response['message']['content']
+    return response.choices[0].message.content
