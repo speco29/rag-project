@@ -41,7 +41,11 @@ def search(query, index, chunks, top_k=3):
     return [chunks[i] for i in indices[0]]
 
 def ask_llm(question, context_chunks):
-    context = "\n\n".join(context_chunks)
+    # only use top 2 chunks instead of 3, and trim each chunk
+    context_chunks = context_chunks[:2]
+    trimmed = [chunk[:500] for chunk in context_chunks]  # trim each chunk to 500 chars
+    context = "\n\n".join(trimmed)
+    
     prompt = f"""Answer the question using only the context below.
 
 Context:
@@ -50,7 +54,7 @@ Context:
 Question: {question}
 Answer:"""
 
-    client = Groq(api_key=os.getenv("GROQ_API_KEY"))  
+    client = Groq(api_key=os.getenv("GROQ_API_KEY"))
     response = client.chat.completions.create(
         model="llama3-8b-8192",
         messages=[{"role": "user", "content": prompt}]
