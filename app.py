@@ -6,18 +6,18 @@ import numpy as np
 
 st.set_page_config(
     page_title="PDF Chat Assistant",
-    page_icon="📄",
+    
     layout="wide"
 )
 
-st.title("📄 PDF Chat Assistant")
+st.title(" PDF Chat Assistant")
 st.markdown("*Upload any PDF and ask questions about it using AI*")
 st.divider()
 
 col1, col2 = st.columns([1, 2])
 
 with col1:
-    st.subheader("📁 Upload PDFs")
+    st.subheader(" Upload PDFs")
     uploaded_files = st.file_uploader(
         "Choose PDF files",
         type="pdf",
@@ -32,7 +32,7 @@ with col1:
         # only re-process if files changed
         if "loaded_files" not in st.session_state or st.session_state.loaded_files != file_names:
             
-            with st.spinner("📖 Reading PDFs..."):
+            with st.spinner(" Reading PDFs..."):
                 text = ""
                 for uploaded_file in uploaded_files:
                     with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as f:
@@ -40,7 +40,7 @@ with col1:
                         text += load_pdf(f.name)
 
             chunks = chunk_text(text, chunk_size=300)
-            st.info(f"📊 Found {len(chunks)} chunks, now embedding...")
+            st.info(f" Found {len(chunks)} chunks, now embedding...")
             progress = st.progress(0)
 
             model = SentenceTransformer('all-MiniLM-L6-v2')
@@ -64,16 +64,16 @@ with col1:
             st.session_state.loaded_files = file_names
             st.session_state.ready = True  # ✅ flag that PDF is ready
 
-        st.success(f"✅ {len(uploaded_files)} PDF(s) loaded!")
+        st.success(f" {len(uploaded_files)} PDF(s) loaded!")
         for f in uploaded_files:
-            st.write(f"📄 {f.name}")
+            st.write(f" {f.name}")
         st.divider()
         st.metric("Total Chunks", len(st.session_state.chunks))
         st.metric("Total Words", len(st.session_state.text.split()))
         st.metric("Total PDFs", len(uploaded_files))
 
 with col2:
-    st.subheader("💬 Chat")
+    st.subheader(" Chat")
 
     if "messages" not in st.session_state:
         st.session_state.messages = []
@@ -85,7 +85,7 @@ with col2:
 
     # ✅ only show chat input AFTER PDF is fully ready
     if "ready" not in st.session_state or not st.session_state.ready:
-        st.info("👈 Please upload a PDF first to start chatting!")
+        st.info(" Please upload a PDF first to start chatting!")
     else:
         question = st.chat_input("Ask anything about your PDFs...")
 
@@ -100,7 +100,7 @@ with col2:
                     answer = ask_llm(question, relevant_chunks)
                 st.write(answer)
 
-                with st.expander("📚 Source chunks used"):
+                with st.expander(" Source chunks used"):
                     for i, chunk in enumerate(relevant_chunks):
                         st.write(f"**Chunk {i+1}:** {chunk[:200]}...")
 
