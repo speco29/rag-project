@@ -62,7 +62,7 @@ with col1:
             st.session_state.index = index
             st.session_state.text = text
             st.session_state.loaded_files = file_names
-            st.session_state.ready = True  # ✅ flag that PDF is ready
+            st.session_state.ready = True  #  flag that PDF is ready
 
         st.success(f" {len(uploaded_files)} PDF(s) loaded!")
         for f in uploaded_files:
@@ -83,7 +83,7 @@ with col2:
         with st.chat_message(msg["role"]):
             st.write(msg["content"])
 
-    # ✅ only show chat input AFTER PDF is fully ready
+    #  only show chat input AFTER PDF is fully ready
     if "ready" not in st.session_state or not st.session_state.ready:
         st.info(" Please upload a PDF first to start chatting!")
     else:
