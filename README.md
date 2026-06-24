@@ -28,8 +28,14 @@ The app finds the most relevant sections and answers using AI.
 ##  Run Locally
 ```bash
 git clone https://github.com/speco29/rag-project
+```
+```bash
 cd rag-project
+```
+```bash
 pip install -r requirements.txt
+```
+```bash
 streamlit run app.py
 ```
 ##  Project Structure
