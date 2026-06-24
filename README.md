@@ -39,9 +39,9 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 ##  Project Structure
-rag-project/
-├── app.py             # Streamlit UI
-├── rag_engine.py      # RAG pipeline
-├── requirements.txt
-└── .streamlit/
-    └── config.toml   # Upload size config
+    rag-project/
+    ├── app.py             # Streamlit UI
+    ├── rag_engine.py      # RAG pipeline
+    ├── requirements.txt
+    └── .streamlit/
+        └── config.toml   # Upload size config
