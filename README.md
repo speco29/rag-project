@@ -26,11 +26,12 @@ The app finds the most relevant sections and answers using AI.
 | PyMuPDF | PDF text extraction |
 
 ##  Run Locally
+```bash
 git clone https://github.com/speco29/rag-project
 cd rag-project
 pip install -r requirements.txt
 streamlit run app.py
-
+```
 ##  Project Structure
 rag-project/
 ├── app.py           # Streamlit UI
