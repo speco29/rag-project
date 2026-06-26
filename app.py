@@ -90,12 +90,12 @@ if "ready" not in st.session_state or not st.session_state.ready:
     st.markdown("""
     <div style='text-align: center; padding: 80px;'>
         <h1>Welcome to PDF Chat</h1>
-        <h3>Upload a PDF on the left to get started</h3>
+        <h3>Upload a PDF and let the magic begin</h3>
         <br><br>
         <p style='font-size: 18px;'>Supports multiple PDFs at once</p>
         <p style='font-size: 18px;'>Up to 3GB per file</p>
         <p style='font-size: 18px;'>Powered by LLaMA3 AI</p>
-        <p style='font-size: 18px;'>Ask questions in plain English</p>
+        
     </div>
     """, unsafe_allow_html=True)
 
