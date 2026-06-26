@@ -83,8 +83,8 @@ if "ready" not in st.session_state or not st.session_state.ready:
     # welcome screen
     st.markdown("""
     <div style='text-align: center; padding: 80px;'>
-        <h1> Welcome to PDF Chat!</h1>
-        <h3>Upload a PDF on the left to get started</h3>
+        <h1> Welcome to PDF Chat</h1>
+        <h3>Upload a PDF and show your magic</h3>
         <br><br>
         <p style='font-size: 18px;'> &nbsp; Supports multiple PDFs at once</p>
         <p style='font-size: 18px;'> &nbsp; Up to 3GB per file</p>
