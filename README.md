@@ -2,7 +2,7 @@
 
 Chat with any PDF using AI — powered by RAG architecture.
  
-🔗 **Live Demo:** [app-link.streamlit.app](https://rag-project-2ikiqbmemls2bazp5yw7pu.streamlit.app/)
+🔗 **Live Demo:** [app-link.streamlit.app](https://rag-project-2ikiqbmemls2bazp5yw7pu.streamlit.app/) 
  
 ##  What is this?
 Upload any PDF and ask questions about it in natural language.
