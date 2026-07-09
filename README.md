@@ -1,5 +1,5 @@
 #  PDF Chat Assistant 
-
+ 
 Chat with any PDF using AI — powered by RAG architecture.
  
 🔗 **Live Demo:** [app-link.streamlit.app](https://rag-project-2ikiqbmemls2bazp5yw7pu.streamlit.app/) 
