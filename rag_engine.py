@@ -6,7 +6,7 @@ import fitz
 from sentence_transformers import SentenceTransformer
 import faiss
 import numpy as np
-from groq import Groq
+from groq import Groq 
 
 def load_pdf(pdf_path):                          
     doc = fitz.open(pdf_path)
