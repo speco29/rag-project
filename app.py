@@ -6,7 +6,7 @@ import numpy as np
 
 st.set_page_config(
     page_title="PDF Chat Assistant",
-    page_icon="📄",
+    page_icon="📄", 
     layout="wide"
 )
 
