@@ -8,7 +8,7 @@ Chat with any PDF using AI — powered by RAG architecture.
 Upload any PDF and ask questions about it in natural language.
 The app finds the most relevant sections and answers using AI.
 
-##  How it works
+##  How it works 
 1. Upload a PDF
 2. App splits it into chunks
 3. Converts chunks to embeddings using SentenceTransformers
