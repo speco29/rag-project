@@ -1,4 +1,4 @@
-#  PDF Chat Assistant 
+#  PDF Chat Assistant  
   
 Chat with any PDF using AI — powered by RAG architecture.  
   
