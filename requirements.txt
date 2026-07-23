@@ -3,7 +3,7 @@ pymupdf
 sentence-transformers
 faiss-cpu
 numpy  
-python-dotenv
+python-dotenv 
 ollama 
 groq
  
