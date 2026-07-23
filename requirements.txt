@@ -4,5 +4,5 @@ sentence-transformers
 faiss-cpu
 numpy  
 python-dotenv
-ollama
+ollama 
 groq
