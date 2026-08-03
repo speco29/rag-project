@@ -5,5 +5,5 @@ faiss-cpu
 numpy  
 python-dotenv 
 ollama 
-groq
+groq 
  
